@@ -1,28 +1,167 @@
-msgid ""
-msgstr ""
-"Project-Id-Version: 0.1\n"
-"Report-Msgid-Bugs-To: Julien Syx\n"
-"POT-Creation-Date: 2013-07-05 07:49+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Julien SYX <julien.syx@lisa-project.net>\n"
-"Language-Team: FR <julien.syx@lisa-project.net>\n"
-"Language: fr\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+#msgid ""
+#msgstr ""
+#"Project-Id-Version: 0.1\n"
+#"Report-Msgid-Bugs-To: Julien Syx\n"
+#"POT-Creation-Date: 2013-07-05 07:49+0200\n"
+#"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+#"Last-Translator: Julien SYX <julien.syx@lisa-project.net>\n"
+#"Language-Team: FR <julien.syx@lisa-project.net>\n"
+#"Language: fr\n"
+#"MIME-Version: 1.0\n"
+#"Content-Type: text/plain; charset=UTF-8\n"
+#"Content-Transfer-Encoding: 8bit\n"
 
 #: ../../modules/programmetv.py
-msgid "On "
-msgstr "Sur "
 
-msgid " at "
-msgstr " à "
+#----------------------getProgrammeTV
+msgid "not yet"
+msgstr "(10,\"Je ne connais pas encore le programme TV à cette date.\"),"
+        "(10,\"Je ne connais pas encore le programme TV à ce momment.\"),"
+        "(10,\"Je ne connais pas encore le programme à cette date.\"),"
 
-msgid " hour "
-msgstr " heures "
 
-msgid " there is : "
-msgstr " il y a : "
+msgid "dont know this channel"
+msgstr "(10,\"Je ne connais pas cette chaîne.\"),"
+        "(10,\"Je ne connais pas la chaîne que vous avez demandée.\"),"
+        
+    
 
-msgid "Downloading the tv program"
-msgstr "Téléchargement du programme TV"
+msgid "prog1"
+msgstr "(10,\"Sur {channel} à {time} : {title}, \"),"
+        "(6,\"A {time} sur {channel}, il y a : {title}, \"),"
+        "(10,\"Sur {channel} à {time} : {title}, \"),"
+        "(6,\"A {time} sur {channel}, il y a : {title}, \"),"
+        
+        
+msgid "prog1-future"
+msgstr "(10,\"Sur {channel} à {time} : {title}, \"),"
+        "(6,\"Sur {channel} à {time}, il y aura : {title}, \"),"
+        "(10,\"A {time} sur {channel} : {title}, \"),"
+        "(6,\"A {time} sur {channel}, il y aura : {title}, \"),"
+
+msgid "prog2"
+msgstr "(10,\"à {time} : {title}, \"),"
+        "(6,\"puis à {time} : {title}, \"),"
+        "(6,\"ensuite à {time} : {title}, \"),"
+
+msgid "prog2-future"
+msgstr "(10,\"à {time}: {title}, \"),"
+        "(6,\"puis à {time} : {title}, \"),"
+        "(6,\"ensuite à {time} : {title}, \"),"
+
+
+msgid "today-msg"
+msgstr "(10,\"Ce {part} \"),"
+       "(8,\"Pour ce {part} \"),"
+
+
+msgid "tomorrow-msg"
+msgstr "(10,\"Demain {part} \"),"
+        "(10,\"Pour demain {part} \"),"
+
+msgid "after-tomorrow-msg"
+msgstr "(10,\"Aprés-demain {part} \"),"
+        "(10,\"Pour aprés demain {part} \"),"
+
+msgid "further day-msg"
+msgstr "(6,\"Le {date} {month} {part} \"),"
+        "(6,\"Pour le {date} {month} {part} \"),"
+        "(8,\"Pour le {date} {part} \"),"
+        "(10,\"Pour {day} {part} \"),"
+        "(10,\"{day} {part} \"),"
+
+
+
+
+
+
+#------------------------downloadProgrammeTV
+msgid "Downloading tv program"
+msgstr "Téléchargement du programme TV."
+
+#------------------------extractProgrammeTV
+msgid "creating tv program"
+msgstr "Création du programme TV."
+
+
+#------------------------------part of the day
+msgid "morning"
+msgstr  "matin"
+
+msgid "midday"
+msgstr  "midi"
+
+msgid "afternoon"
+msgstr  "après-midi"
+
+msgid "evening"
+msgstr  "soir"
+
+msgid "alltheday"
+msgstr  "toute la journée"
+
+
+#---------------------------------date
+msgid "today"
+msgstr  "aujourd'hui"
+
+msgid "tomorrow"
+msgstr  "demain"
+
+msgid "after tomorrow"
+msgstr  "aprés demain"
+
+
+#---------------------------------time
+msgid "hour"
+msgstr "heure"
+
+msgid "minute"
+msgstr "minute"
+
+msgid "seconde"
+msgstr "seconde"
+
+
+
+#---------------------------------day
+
+msgid "Mon"
+msgstr "lundi "
+msgid "Tue"
+msgstr "mardi "
+msgid "Wed"
+msgstr "mercredi "
+msgid "Thu"
+msgstr "jeudi "
+msgid "Fri"
+msgstr "vendredi "
+msgid "Sat"
+msgstr "samedi "
+msgid "Sun"
+msgstr "dimanche "
+#---------------------------------month
+msgid "January"
+msgstr  "janvier "
+msgid "February"
+msgstr  "février "
+msgid "March"
+msgstr  "Mars "
+msgid "April"
+msgstr  "Avril "
+msgid "May"
+msgstr  "Mai "
+msgid "June"
+msgstr  "Juin "
+msgid "July"
+msgstr  "Juillet "
+msgid "August"
+msgstr  "Aout "
+msgid "Septembre"
+msgstr  "Septembre "
+msgid "October"
+msgstr  "Octobre "
+msgid "November"
+msgstr  "Novembre "
+msgid "December"
+msgstr  "Décembre "

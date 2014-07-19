@@ -1,10 +1,10 @@
 {
     "name": "ProgrammeTV",
-    "version": "1.0.1",
-    "author": "Julien Syx",
+    "version": "1.0.0",
+    "author": "Neotique",
     "enabled": 1,
-    "pypi-url": "https://pypi.python.org/pypi/lisa-plugin-ProgrammeTV",
-    "github-url": "https://raw.githubusercontent.com/Seraf/LISA-PLUGINS-ProgrammeTV/master/lisa/plugins/ProgrammeTV/programmetv.json",
+    "pypi-url": "xxx",
+    "github-url": "xxx",
     "description": [
         {"lang": "fr", "description": "Ce plugin permet de récuperer le programme TV"}
     ],
@@ -16,7 +16,10 @@
                 "corpus": {}
             }
         },
-        "user_id": "sfmfu9y7epxfj"
+        "user_seraf_id": "sfmfu9y7epxfj"
+        "user_id": "gutyvycb94pj9"
+        "user_name" : "neotique"
+        "user_mail" : "MrVIM22@yahoo.fr"
     },
     "cron": [{
         "name": "Download Programme TV",
