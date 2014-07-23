@@ -51,6 +51,9 @@ msgstr "(10,\"puis \"),"
         "(10,\"avec \"),"
         "(10,\", \"),"
 
+msgid "prog1{0}"
+msgstr  "template"
+
 msgid "prog1"
 msgstr "(10,\"Sur {channel} il y a {time}, {title}, \"),"
         "(10,\"Sur {channel} {time} il y a, {title}, \"),"
@@ -196,3 +199,7 @@ msgid "November"
 msgstr  "Novembre "
 msgid "December"
 msgstr  "Décembre "
+
+msgid "after tomorrow-msg"
+msgstr  ""
+

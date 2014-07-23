@@ -46,10 +46,10 @@ class ProgrammeTV(IPlugin):
         super(ProgrammeTV, self).__init__()
         self.configuration_plugin = self.mongo.lisa.plugins.find_one({"name": "ProgrammeTV"})
         self.path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe()))[0],os.path.normpath("../lang/"))))
-        self._ = NeoTrans(domain='programmetv',localedir=self.path,fallback=True,languages=[self.configuration_lisa['lang']], test = __name__).Trans
+        self._ = NeoTrans(domain='programmetv',localedir=self.path,fallback=True,languages=[self.configuration_lisa['lang']]).Trans
         
-        self.WITDate = NeoConv(self._, test = __name__).WITDate
-        self.time2str = NeoConv(self._, test = __name__).time2str
+        self.WITDate = NeoConv(self._).WITDate
+        self.time2str = NeoConv(self._).time2str
     
     
     #-----------------------------------------------------------------------------
@@ -60,7 +60,11 @@ class ProgrammeTV(IPlugin):
         #print 'json                     ',jsonInput
         
         #init
-        rep = os.path.dirname(os.path.abspath(__file__)) + '/tmp/'+str(date.today())+'_programmetv.xml'
+        try:
+            os.mkdir(os.path.dirname(os.path.abspath(__file__)) + '/tmp/')
+        except:
+            pass
+        rep = os.path.dirname(os.path.abspath(__file__)) + '/tmp/' + str(date.today())+'_programmetv.xml'
         #print rep
         self._downloadProgrammeTV(rep)
         if __name__ == "__main__" : print "début lecture fichier xml"; t1= datetime.now()
@@ -214,6 +218,7 @@ class ProgrammeTV(IPlugin):
         if not os.path.isfile(rep) :
             print self._("Downloading tv program")
             if __name__ == "__main__" : print '    debut telechargement';t1= datetime.now()
+            print url,rep
             urllib.urlretrieve(url,rep)         #write file
             if __name__ == "__main__" :print '    durée telechargement',datetime.now()-t1
             self._extractProgrammeTV(rep)
