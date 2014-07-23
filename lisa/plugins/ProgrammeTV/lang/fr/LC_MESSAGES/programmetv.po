@@ -39,7 +39,11 @@ msgstr "(10,\"Je ne connais pas cette chaîne.\"),"
         "(8,\"Je ne connais aucune chaine de ce nom.\"),"
         "(8,\"Cette chaine. n'existe pas.\"),"
         
-        
+msgid "too much"
+msgstr "(10,\"Cela fait beaucoup d'émissions. Veuillez précisez une chaîne ou réduire la plage horaire.\"),"
+        "(10,\"Cela fait beaucoup d'émissions. Pouvez-vous précisez une chaîne ou réduire la plage horaire.\"),"
+        "(10,\"Cela va être long de tout vous dire. Pouvez-vous précisez une chaîne ou réduire la plage horaire.\"),"
+        "(10,\"Je vais mettre beaucoup de temps à tout vous dire. Pouvez-vous précisez une chaîne ou réduire la plage horaire.\"),"
         
 #-----------shows
 msgid "at"
@@ -48,20 +52,21 @@ msgstr "à "
 msgid "then"
 msgstr "(10,\"puis \"),"
         "(10,\"et \"),"
-        "(10,\"avec \"),"
-        "(10,\", \"),"
+        "(8,\"avec \"),"
+        "(16,\", \"),"
 
 msgid "prog1"
-msgstr "(10,\"Sur {channel} il y a {time}, {title}, \"),"
-        "(10,\"Sur {channel} {time} il y a, {title}, \"),"
-        "(6,\"{time} sur {channel}, {title}, \"),"
+msgstr "(6,\"Sur {channel} il y a {time}, {title}, \"),"
+        "(14,\"Sur {channel} {time}, {title}, \"),"
+        "(6,\"Sur {channel} {time} il y a, {title}, \"),"
+        "(14,\"{time} sur {channel}, {title}, \"),"
         "(6,\"{time} sur {channel}, il y a {title}, \"),"
         
         
 msgid "prog1-future"
-msgstr "(10,\"Sur {channel} {time} {title}, \"),"
-        "(6,\"Sur {channel} {time}, il y aura {title}, \"),"
-        "(10,\"{time} sur {channel}, {title}, \"),"
+msgstr "(10,\"Sur {channel} il y aura {time}, {title}, \"),"
+        "(10,\"Sur {channel} {time} il y aura, {title}, \"),"
+        "(6,\"{time} sur {channel}, {title}, \"),"
         "(6,\"{time} sur {channel}, il y aura {title}, \"),"
 
 msgid "prog2"
@@ -75,10 +80,11 @@ msgstr "{nbepisode} épisodes de {title}"
 
 #-----------starts messages
 msgid "today-msg"
-msgstr "(8,\"Ce {part} \"),"
-       "(6,\"Pour ce {part} \"),"
-       "(8,\"Aujourd'hui \"),"
-       "(10,\" \"),"
+msgstr " "
+#msgstr "(8,\"Ce {part} \"),"
+#       "(6,\"Pour ce {part} \"),"
+#       "(8,\"Aujourd'hui \"),"
+#       "(10,\" \"),"
 
 
 msgid "tomorrow-msg"
@@ -101,46 +107,58 @@ msgstr "(6,\"Le {date} {month} \"),"
         "(10,\"{day} {part} \"),"
 
 
-#------------------------downloadProgrammeTV
+#----------------------------------------downloadProgrammeTV
 msgid "Downloading tv program"
 msgstr "Téléchargement du programme TV."
 
-#------------------------extractProgrammeTV
+#-----------------------------------------extractProgrammeTV
 msgid "creating tv program"
 msgstr "Création du programme TV."
 
 
+#-----------------------------------------getnextshow
+msgid "no show"
+msgstr "(10,\"Je n'ai pas compris le nom du programme à rechercher.\"),"
+        "(10,\"Je n'ai pas compris le nom de l'émission.\"),"
+        "(10,\"Je ne connais pas cette émission.\"),"
+
+msgid "next show"
+msgstr "(10,\"Les prochains épisodes de {title} sont \"),"
+        "(10,\"Les prochains {title} sont \"),"
+
+
+
 #------------------------------part of the day
 msgid "morning"
-msgstr  "matin"
+msgstr  "matin "
 
 msgid "midday"
-msgstr  "midi"
+msgstr  "midi "
 
 msgid "afternoon"
-msgstr  "après midi"
+msgstr  "après midi "
 
 msgid "evening"
-msgstr  "soir"
+msgstr  "soir "
 
 msgid "alltheday"
-msgstr  "toute la journée"
+msgstr  "toute la journée "
 
 msgid "now"
 msgstr  "(10,\"actuellement\"),"
         "(10,\"en ce moment\"),"
         "(6,\"maintenant\"),"
-        "(8,\"en cours\"),"
+        "(16,\" \"),"
 
 #---------------------------------date
 msgid "today"
-msgstr  "aujourd'hui"
+msgstr  "aujourd'hui "
 
 msgid "tomorrow"
-msgstr  "demain"
+msgstr  "demain "
 
 msgid "after tomorrow"
-msgstr  "aprés demain"
+msgstr  "aprés demain "
 
 
 #---------------------------------time

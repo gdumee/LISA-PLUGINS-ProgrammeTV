@@ -40,7 +40,7 @@ from lisa.Neotique.NeoConv import NeoConv
 #-----------------------------------------------------------------------------
 class ProgrammeTV(IPlugin):
     """
-    Plugin main class
+    Plugin main class 
     """
     def __init__(self):
         super(ProgrammeTV, self).__init__()
@@ -56,12 +56,13 @@ class ProgrammeTV(IPlugin):
     #              Publics  Fonctions
     #-----------------------------------------------------------------------------   
     def getProgrammeTV(self, jsonInput):
-  
+        """
+        get TV show on a specific/all channel
+        """
         #print 'json                     ',jsonInput
         
         #init
         rep = os.path.dirname(os.path.abspath(__file__)) + '/tmp/'+str(date.today())+'_programmetv.xml'
-        #print rep
         self._downloadProgrammeTV(rep)
         if __name__ == "__main__" : print "début lecture fichier xml"; t1= datetime.now()
         programmetv = ET.parse(rep).getroot()
@@ -76,14 +77,14 @@ class ProgrammeTV(IPlugin):
         if dDate['delta'] < 0 :
             return {"plugin": __name__.split('.')[-1], "method": sys._getframe().f_code.co_name, "body": self._("too late")}                         #fatal
         #special case for evening
-        if dDate['part'] == u'alltheday' or \
-            (dDate['begin'] == time(18,00) and  dDate['end'] == time(00,00)):  
+        if (dDate['part'] == u'alltheday') or  (dDate['begin'] == time(18,00) and  dDate['end'] == time(00,00)):  
             #by default, get TV for the evening
             dDate['begin'] = time(21,05)
             dDate['end'] = time(21,10)
             dDate['part'] = u'evening'
         #special case for other part of the day
-        
+        #...TODO if needed
+        #for debug
         #print 'ma date       ', dDate
 
         
@@ -100,7 +101,7 @@ class ProgrammeTV(IPlugin):
         
         #check if requested channel exist
         namchannel=u'all' #by default get tv for all channel
-        if jsonInput['outcome']['entities'].has_key('location') == True:
+        if 'location' in jsonInput['outcome']['entities'] :
             for channel in channelDict :
                 if ((jsonInput['outcome']['entities']['location']['value']).upper()) == channelDict[channel]:
                     namchannel = channelDict[channel]  #requested channel is in the xml
@@ -109,6 +110,16 @@ class ProgrammeTV(IPlugin):
                 return {"plugin": __name__.split('.')[-1], "method": sys._getframe().f_code.co_name, "body": self._("dont know this channel")}          #fatal
         
         
+        #check if not to much
+        #I seleted 3h as maximun duration
+        #if all channel and start time to end time > xh and not end time - actual time >xh, we say 'too much'
+        #it will last many minutes to say all shows..
+        if namchannel==u'all' and \
+         (int(dDate['end'].strftime("%H"))-int(dDate['begin'].strftime("%H")))>=3 and \
+         (int(dDate['end'].strftime("%H"))-int(datetime.now().time().strftime("%H")))>=3 :
+            return {"plugin": __name__.split('.')[-1], "method": sys._getframe().f_code.co_name, "body": self._("too much")}          #fatal
+            
+
         #look for request date/channel
         progDict={} #contains tv programming, to re-order because xml file is not in time order !
         for child in programmetv.findall('programme'):    
@@ -118,15 +129,11 @@ class ProgrammeTV(IPlugin):
                         if (child.attrib['start'][8:12] >= dDate['begin'].strftime("%H%M") and child.attrib['start'][8:12] <= dDate['end'].strftime("%H%M")) or \
                             (child.attrib['start'][8:12] < dDate['begin'].strftime("%H%M") and child.attrib['stop'][8:12] > dDate['begin'].strftime("%H%M")):#check for request time
                             #build return dict
-                            #tim = child.attrib['start'][8:10]+':'+child.attrib['start'][10:12]
                             tim = child.attrib['start'][8:12]
-                            try :
-                                title = child.find('title').text  #.encode('utf8')
-                            except:
-                                title =''
-                                print u'Erreur de decodage        ',child.find('title').text
+                            title = child.find('title').text.lower()
                             progDict[(child.attrib['channel'],tim)] = title
-        
+        #for debug
+        #for t,s in sorted(progDict.iteritems()): print t,s
         
         #search for following episodes of same series
         episodedict={} 
@@ -136,7 +143,7 @@ class ProgrammeTV(IPlugin):
             #print t,s
             if s == previousshow :  #new episode of current show
                 episodelist =  episodedict[firstshow]
-                episodelist.append(t) #store time of episode
+                episodelist.append(t) #store times of episode
                 episodedict[firstshow]=episodelist
             else :#new show
                 firstshow = t
@@ -153,11 +160,9 @@ class ProgrammeTV(IPlugin):
                     nbepisode+=1
                     del progDict[i]  #delete episode
                 progDict[t]= self._('episodes').format(nbepisode=nbepisode,title = progDict[t])  #replace name
-            
         #for debug
         #for t,s in sorted(progDict.iteritems()): print t,s
         
-
 
         #build return TV message
         programmetv_str = u""
@@ -168,7 +173,7 @@ class ProgrammeTV(IPlugin):
         for t,p in sorted(progDict.iteritems()) : #sorted by channel and time
             #print t,p
             #time
-            if t[1] < datetime.now().time().strftime("%H:%M") :  #if TV show runs actually
+            if t[1] < datetime.now().time().strftime("%H%M") :  #if TV show runs actually
                 tim=self._('now')  
             elif (eval(t[1])-previoustime) > 8 :
                 previoustime = eval(t[1])
@@ -182,11 +187,12 @@ class ProgrammeTV(IPlugin):
                 else :
                     programmetv_str += '. '
                 actualchannel = t[0]
+                previoustime=00
                 programmetv_str += self._('prog1{0}'.format(future)).format(channel = channelDict[t[0]],time =tim, title =p)
             else : #actual channel
                     programmetv_str += self._('prog2').format(time =tim, title = p)
         
-        
+    
         #build return start message
         if dDate['delta'] == 0 :
             message = self._('today-msg').format (part=self._(dDate['part']))
@@ -205,19 +211,89 @@ class ProgrammeTV(IPlugin):
         
         return {"plugin": __name__.split('.')[-1], "method": sys._getframe().f_code.co_name, "body": message}
 
+
+
+    #-----------------------------------------------------------------------------    
+    def getNextShow(self,jsonInput) :
+        """
+        look for the next time of requested show
+        """
+        #print 'json                     ',jsonInput
+        #init
+        rep = os.path.dirname(os.path.abspath(__file__)) + '/tmp/'+str(date.today())+'_programmetv.xml'
+        self._downloadProgrammeTV(rep)
+        programmetv = ET.parse(rep).getroot()
+
+    
+        #config show
+        if 'message_body' in jsonInput['outcome']['entities'] :
+            namshow = jsonInput['outcome']['entities']['message_body']['value']
+            namshow = namshow.lower().strip()
+        else :
+            message = self._('no show')
+            return {"plugin": __name__.split('.')[-1], "method": sys._getframe().f_code.co_name, "body": message}          #fatal
+        
+        
+        #look for show
+        showList=[]
+        for child in programmetv.findall('programme'):    
+            if namshow in child.find('title').text.lower():
+                showList.append(child.attrib['start'][0:12])
+        if not showList :
+            message = self._('no show')
+            return {"plugin": __name__.split('.')[-1], "method": sys._getframe().f_code.co_name, "body": message}           #fatal
+        #print showList
+        
+        #return message
+        previousdelta=-1
+        message = self._('next show').format(title=namshow)
+        for el in showList :
+            delta = (datetime.strptime(el,'%Y%m%d%H%M').date()-datetime.today().date()).days
+            #build return start message
+            if delta <> previousdelta :
+                if delta == 0 :
+                    message += self._('today')
+                elif delta == 1 :
+                    message += self._('tomorrow')
+                elif delta== 2 :
+                    message += self._('after tomorrow')
+                elif delta >2 :
+                    d =datetime.strptime(el,'%Y%m%d%H%M').strftime('%d')
+                    if d[0:1] == "0":
+                        d=d[1:2]
+                    month = datetime.strptime(el,'%Y%m%d%H%M').strftime('%B')
+                    day = datetime.strptime(el,'%Y%m%d%H%M').strftime('%c')[:3]
+                    message += self._("further day-msg").format(date = d, month='',day=self._(day),part='')
+                previousdelta = delta
+        
+            tim = self._('at') + self.time2str((el[8:10]+':'+el[10:12]),pMinutes=0) +', '
+            message+= tim
+
+        
+        return {"plugin": __name__.split('.')[-1], "method": sys._getframe().f_code.co_name, "body": message}
+        
     #-----------------------------------------------------------------------------
     #              Private  Fonctions
     #-----------------------------------------------------------------------------  
     def _downloadProgrammeTV(self,rep):
         
         url = "http://www.kazer.org/tvguide.xml?u=" + self.configuration_plugin['configuration']['user_id']
+        
+        if not os.path.exists(os.path.dirname(rep)) :
+            os.mkdir(os.path.dirname(rep))
+        
         if not os.path.isfile(rep) :
+            #delete all old exisitng files
+            fichier= os.listdir(os.path.dirname(rep))
+            for f in fichier :
+                os.remove(os.path.dirname(rep)+'/'+f)
+            #download
             print self._("Downloading tv program")
-            if __name__ == "__main__" : print '    debut telechargement';t1= datetime.now()
+            if __name__ == "__main__" : print '         debut telechargement';t1= datetime.now()
             urllib.urlretrieve(url,rep)         #write file
-            if __name__ == "__main__" :print '    durée telechargement',datetime.now()-t1
+            if __name__ == "__main__" :print '         durée telechargement',datetime.now()-t1
             self._extractProgrammeTV(rep)
-            
+           
         return "SUCCESS"
 
     #-----------------------------------------------------------------------------    
@@ -226,7 +302,7 @@ class ProgrammeTV(IPlugin):
         supprime toutes les infos inutules de l xml et le ré-engregistre
         """
         print self._("creating tv program")
-        if __name__ == "__main__" : print 'debut creation prog TV'; t1= datetime.now()
+        if __name__ == "__main__" : print '         debut creation prog TV'; t1= datetime.now()
         programmetv_tree = ET.parse(rep)
         programmetv_root = programmetv_tree.getroot()
         for el in ['sub-title','episode-num','desc','credits','date','category','length','video','audio','star-rating'] :
@@ -237,7 +313,7 @@ class ProgrammeTV(IPlugin):
                 except :
                     pass
         programmetv_tree.write(rep)    
-        if __name__ == "__main__" :print '      duree creation prog TV' ,datetime.now()-t1 
+        if __name__ == "__main__" :print '         duree creation prog TV' ,datetime.now()-t1 
         return "SUCCESS"
   
         
@@ -256,6 +332,8 @@ class ProgrammeTV(IPlugin):
                 if channelDict[channel] == 'NUMERO 23' : channelDict[channel] = u'numéro 23'
                 if channelDict[channel] == 'L EQUIPE 21' : channelDict[channel] = u"l'équipe 21"
                 if channelDict[channel] == 'ARTE' : channelDict[channel] = u"arté"
+                if channelDict[channel] == '13EME RUE' : channelDict[channel] = u"13éme rue"
+                if channelDict[channel] == '6 TER' : channelDict[channel] = u"6 ter"
 
         return channelDict
         
@@ -272,16 +350,21 @@ if __name__ == "__main__" :
     u'msg_body': u'quel est le programme TV demain \xe0 21 heure sur France 4', 
     u'outcome': {
         u'entities': {
-u'location': {u'body': u'France 4', u'start': 47, u'end': 55, u'suggested': True, u'value': u'tmc'},
-        u'datetime': {u'body': u'demain \xe0 21 heure', u'start': 25, u'end': 42, u'value': {u'to': u'2014-07-23T19:00:00.000+02:00', u'from': u'2014-07-22T12:00:00.000+02:00'}} 
-
+            u'message_body': {u'body': u'hercules poirot', u'start': 22, u'end': 37, u'suggested': True, u'value': u'hercule poirot'},
+            
+            u'datetime': {u'body': u'demain \xe0 21 heure', u'start': 25, u'end': 42, u'value': {u'to': u'2014-07-24T12:00:00.000+02:00', u'from': u'2014-07-23T08:00:00.000+02:00'}} 
         }, 
         u'confidence': 0.987, 
         u'intent': u'programmetv_getprogrammetv'
     }, 
     'type': u'chat'}
-    #u'location': {u'body': u'France 4', u'start': 47, u'end': 55, u'suggested': True, u'value': u'France 4'},
-    #u'datetime': {u'body': u'demain \xe0 21 heure', u'start': 25, u'end': 42, u'value': {u'to': u'2014-07-17T22:00:00.000+02:00', u'from': u'2014-07-17T21:00:00.000+02:00'}} 
+    #u'location': {u'body': u'France 4', u'start': 47, u'end': 55, u'suggested': True, u'value': u'tmc'},
+    
+    #print dir(ProgrammeTV)
+    #print help(ProgrammeTV)
+    
+    
     essai = ProgrammeTV()
     retourn = essai.getProgrammeTV(jsonInput)
+    #retourn = essai.getNextShow(jsonInput)
     print (retourn['body'])
