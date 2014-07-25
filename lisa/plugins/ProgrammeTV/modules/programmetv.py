@@ -130,7 +130,7 @@ class ProgrammeTV(IPlugin):
                             (child.attrib['start'][8:12] < dDate['begin'].strftime("%H%M") and child.attrib['stop'][8:12] > dDate['begin'].strftime("%H%M")):#check for request time
                             #build return dict
                             tim = child.attrib['start'][8:12]
-                            title = child.find('title').text.lower()
+                            title = child.find('title').text
                             progDict[(child.attrib['channel'],tim)] = title
         #for debug
         #for t,s in sorted(progDict.iteritems()): print t,s
@@ -199,7 +199,7 @@ class ProgrammeTV(IPlugin):
         elif dDate['delta'] == 1 :
             message = self._('tomorrow-msg').format(day = self._('tomorrow'), part=self._(dDate['part']))
         elif dDate['delta'] == 2 :
-            message = self._('after tomorrow-msg').format(day = self._('after tomorrow'), part=self._(dDate['part']))
+            message = self._('after-tomorrow-msg').format(day = self._('after tomorrow'), part=self._(dDate['part']))
         elif dDate['delta'] >2 :
             d =dDate['date'].strftime('%d')
             if d[0:1] == "0":
@@ -237,8 +237,10 @@ class ProgrammeTV(IPlugin):
         #look for show
         showList=[]
         for child in programmetv.findall('programme'):    
-            if namshow in child.find('title').text.lower():
-                showList.append(child.attrib['start'][0:12])
+            if child.attrib['stop'][8:12] >= datetime.now().time().strftime("%H%M") : #dont care about already finish show
+                if namshow in child.find('title').text.lower():
+                    showList.append(child.attrib['start'][0:12])
+                    namshow = child.find('title').text
         if not showList :
             message = self._('no show')
             return {"plugin": __name__.split('.')[-1], "method": sys._getframe().f_code.co_name, "body": message}           #fatal

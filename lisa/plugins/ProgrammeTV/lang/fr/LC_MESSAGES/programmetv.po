@@ -218,6 +218,3 @@ msgstr  "Novembre "
 msgid "December"
 msgstr  "Décembre "
 
-msgid "after tomorrow-msg"
-msgstr  ""
-
