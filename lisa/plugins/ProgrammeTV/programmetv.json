@@ -26,7 +26,7 @@
         "user_name" : "neotique",
         "user_mail" : "MrVIM22@yahoo.fr"
     },
-    "cron": [{
+    "crons": [{
         "name": "Download Programme TV",
         "debug": 1,
         "rule": "FREQ=DAILY;INTERVAL=1;BYHOUR=3",
