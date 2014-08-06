@@ -1,137 +1,154 @@
+#-----------------------------------------------------------------------------
+# copyright   : Neotique
+#-----------------------------------------------------------------------------
 msgid ""
-msgstr ""
-"Project-Id-Version: 0.1\n"
-"Report-Msgid-Bugs-To: Julien Syx\n"
-"POT-Creation-Date: 2013-07-05 07:49+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Julien SYX <julien.syx@lisa-project.net>\n"
-"Language-Team: FR <julien.syx@lisa-project.net>\n"
-"Language: fr\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+msgstr  "Last-Translator: Guillaume Audet <guillaume.audet@neotique.fr>\n"
+        "Language-Team: Neotique>\n"
+        "Language: fr\n"
+        "MIME-Version: 1.0\n"
+        "Content-Type: text/plain; charset=UTF-8\n"
+        "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../modules/programmetv.py
+#-----------------------------------------------------------------------------
+# Plugin description
+#-----------------------------------------------------------------------------
+msgid "i_can_plugin"
+msgstr  "(10, \"Je peux vous donner le programme télé\"),"
+        "(10, \"Vous pouvez me demander ce qu'il y a à la télé\"),"
+        "(10, \"Vous pouvez me demander le programme télé\"),"
 
-#----------------------getProgrammeTV
+msgid "i_can_getProgrammeTV"
+msgstr  "(10, \"Vous pouvez me demander ce qu'il y a à la télé sur 7 jours dans une ville\"),"
+        "(10, \"Je peux vous dire ce qu'il y aura sur une chaine dans les 7 prochains jours\"),"
+
+msgid "i_can_getNextShow"
+msgstr  "(10, \"Je peux vous indiquer la date de diffusion du prochain épisode d'une série\"),"
+        "(10, \"Vous pouvez me demander la date de diffusion d'une série dans les 7 prochains jours\"),"
+
+
+#-----------------------------------------------------------------------------
+# getProgrammeTV
+#-----------------------------------------------------------------------------
 msgid "not yet"
-msgstr "(10,\"Je ne connais pas encore le programme TV à cette date.\"),"
-        "(10,\"Je ne connais pas encore le programme TV à ce momment.\"),"
-        "(10,\"Je ne connais pas encore le programme de cette date.\"),"
-        "(10,\"Je ne connais le programme que pour les 7 prochains jours.\"),"
-        "(10,\"Je connais le programme que des 7 prochains jours.\"),"
-        "(10,\"Je ne peux vous donner le programme que pour les 7 prochains jours.\"),"
-
+msgstr  "(10, \"Je ne connais pas encore le programme TV à cette date.\"),"
+        "(10, \"Je ne connais pas encore le programme TV à ce momment.\"),"
+        "(10, \"Je ne connais pas encore le programme de cette date.\"),"
+        "(10, \"Je ne connais le programme que pour les 7 prochains jours.\"),"
+        "(10, \"Je connais le programme que des 7 prochains jours.\"),"
+        "(10, \"Je ne peux vous donner le programme que pour les 7 prochains jours.\"),"
 
 msgid "too late"
-msgstr "(10,\"Je ne connais pas le programme TV des jours passés.\"),"
-        "(10,\"Je ne connais plus le programme des jours précedents .\"),"
-        "(10,\"Je ne peux pas vous dire les programmes passés.\"),"
-        "(10,\"Je ne peux pas vous donner les programmes passés.\"),"
-        "(10,\"Je ne peux pas vous donner le programme de jours passés.\"),"
-
+msgstr  "(10, \"Je ne connais pas le programme TV des jours passés.\"),"
+        "(10, \"Je ne connais plus le programme des jours précedents .\"),"
+        "(10, \"Je ne peux pas vous dire les programmes passés.\"),"
+        "(10, \"Je ne peux pas vous donner les programmes passés.\"),"
+        "(10, \"Je ne peux pas vous donner le programme de jours passés.\"),"
 
 msgid "dont know this channel"
-msgstr "(10,\"Je ne connais pas cette chaîne.\"),"
-        "(10,\"Je ne connais pas la chaîne que vous avez demandée.\"),"
-        "(10,\"Je n'ai pas compris la chaine que vous avez demandée.\"),"
-        "(10,\"Je ne connais pas la chaine demandée.\"),"
-        "(8,\"Je ne connais aucune chaine de ce nom.\"),"
-        "(8,\"Cette chaine. n'existe pas.\"),"
-        
+msgstr  "(10, \"Je ne connais pas cette chaîne.\"),"
+        "(10, \"Je ne connais pas la chaîne que vous avez demandée.\"),"
+        "(10, \"Je n'ai pas compris la chaine que vous avez demandée.\"),"
+        "(10, \"Je ne connais pas la chaine demandée.\"),"
+        "(8,  \"Je ne connais aucune chaine de ce nom.\"),"
+        "(8,  \"Cette chaine. n'existe pas.\"),"
+
 msgid "too much"
-msgstr "(10,\"Cela fait beaucoup d'émissions. Veuillez précisez une chaîne ou réduire la plage horaire.\"),"
-        "(10,\"Cela fait beaucoup d'émissions. Pouvez-vous précisez une chaîne ou réduire la plage horaire.\"),"
-        "(10,\"Cela va être long de tout vous dire. Pouvez-vous précisez une chaîne ou réduire la plage horaire.\"),"
-        "(10,\"Je vais mettre beaucoup de temps à tout vous dire. Pouvez-vous précisez une chaîne ou réduire la plage horaire.\"),"
-        
-#-----------shows
+msgstr  "(10, \"Cela fait beaucoup d'émissions. Veuillez précisez une chaîne ou réduire la plage horaire.\"),"
+        "(10, \"Cela fait beaucoup d'émissions. Pouvez-vous précisez une chaîne ou réduire la plage horaire.\"),"
+        "(10, \"Cela va être long de tout vous dire. Pouvez-vous précisez une chaîne ou réduire la plage horaire.\"),"
+        "(10, \"Je vais mettre beaucoup de temps à tout vous dire. Pouvez-vous précisez une chaîne ou réduire la plage horaire.\"),"
+
+
+#-----------------------------------------------------------------------------
+# Shows
+#-----------------------------------------------------------------------------
 msgid "at"
 msgstr "à "
 
 msgid "then"
-msgstr "(10,\"puis \"),"
-        "(10,\"et \"),"
-        "(8,\"avec \"),"
-        "(16,\", \"),"
+msgstr  "(10, \"puis \"),"
+        "(10, \"et \"),"
+        "(8,  \"avec \"),"
+        "(16, \", \"),"
 
 msgid "prog1{0}"
 msgstr  "template"
 
 msgid "prog1"
-msgstr "(6,\"Sur {channel} il y a {time}, {title}, \"),"
-        "(14,\"Sur {channel} {time}, {title}, \"),"
-        "(6,\"Sur {channel} {time} il y a, {title}, \"),"
-        "(14,\"{time} sur {channel}, {title}, \"),"
-        "(6,\"{time} sur {channel}, il y a {title}, \"),"
-        
-        
+msgstr  "(6,  \"Sur {channel} il y a {time}, {title}, \"),"
+        "(14, \"Sur {channel} {time}, {title}, \"),"
+        "(6,  \"Sur {channel} {time} il y a, {title}, \"),"
+        "(14, \"{time} sur {channel}, {title}, \"),"
+        "(6,  \"{time} sur {channel}, il y a {title}, \"),"
+
+
 msgid "prog1-future"
-msgstr "(10,\"Sur {channel} il y aura {time}, {title}, \"),"
-        "(10,\"Sur {channel} {time} il y aura, {title}, \"),"
-        "(6,\"{time} sur {channel}, {title}, \"),"
-        "(6,\"{time} sur {channel}, il y aura {title}, \"),"
+msgstr  "(10, \"Sur {channel} il y aura {time}, {title}, \"),"
+        "(10, \"Sur {channel} {time} il y aura, {title}, \"),"
+        "(6,  \"{time} sur {channel}, {title}, \"),"
+        "(6,  \"{time} sur {channel}, il y aura {title}, \"),"
 
 msgid "prog2"
-msgstr "(10,\"{time}, {title}, \"),"
-        "(8,\"puis {time}, {title}, \"),"
-        "(6,\"ensuite {time}, {title}, \"),"
+msgstr  "(10, \"{time}, {title}, \"),"
+        "(8,  \"puis {time}, {title}, \"),"
+        "(6,  \"ensuite {time}, {title}, \"),"
 
 msgid "episodes"
-msgstr "{nbepisode} épisodes de {title}"
+msgstr  "{nbepisode} épisodes de {title}"
 
 
 #-----------starts messages
 msgid "today-msg"
 msgstr " "
-#msgstr "(8,\"Ce {part} \"),"
-#       "(6,\"Pour ce {part} \"),"
-#       "(8,\"Aujourd'hui \"),"
-#       "(10,\" \"),"
+#msgstr "(8,  \"Ce {part} \"),"
+#       "(6,  \"Pour ce {part} \"),"
+#       "(8,  \"Aujourd'hui \"),"
+#       "(10, \" \"),"
 
 
 msgid "tomorrow-msg"
-msgstr "(10,\"Demain \"),"
-        "(8,\"Demain {part} \"),"
-        "(6,\"Pour demain {part} \"),"
+msgstr  "(10, \"Demain \"),"
+        "(8,  \"Demain {part} \"),"
+        "(6,  \"Pour demain {part} \"),"
 
-        
+
 msgid "after-tomorrow-msg"
-msgstr "(10,\"Aprés-demain \"),"
-        "(8,\"Aprés-demain {part} \"),"
-        "(6,\"Pour aprés demain {part} \"),"
-        
-        
+msgstr  "(10, \"Aprés-demain \"),"
+        "(8,  \"Aprés-demain {part} \"),"
+        "(6,  \"Pour aprés demain {part} \"),"
+
+
 msgid "further day-msg"
-msgstr "(6,\"Le {date} {month} \"),"
-        "(6,\"Pour le {date} {month} {part} \"),"
-        "(8,\"Pour le {date} {part} \"),"
-        "(10,\"Pour {day} {part} \"),"
-        "(10,\"{day} {part} \"),"
+msgstr  "(6,  \"Le {date} {month} \"),"
+        "(6,  \"Pour le {date} {month} {part} \"),"
+        "(8,  \"Pour le {date} {part} \"),"
+        "(10, \"Pour {day} {part} \"),"
+        "(10, \"{day} {part} \"),"
 
 
 #----------------------------------------downloadProgrammeTV
 msgid "Downloading tv program"
-msgstr "Téléchargement du programme TV."
+msgstr  "Téléchargement du programme TV."
 
 #-----------------------------------------extractProgrammeTV
 msgid "creating tv program"
-msgstr "Création du programme TV."
+msgstr  "Création du programme TV."
 
 
 #-----------------------------------------getnextshow
 msgid "no show"
-msgstr "(10,\"Je n'ai pas compris le nom du programme à rechercher.\"),"
-        "(10,\"Je n'ai pas compris le nom de l'émission.\"),"
-        "(10,\"Je ne connais pas cette émission.\"),"
+msgstr  "(10, \"Je n'ai pas compris le nom du programme à rechercher.\"),"
+        "(10, \"Je n'ai pas compris le nom de l'émission.\"),"
+        "(10, \"Je ne connais pas cette émission.\"),"
 
 msgid "next show"
-msgstr "(10,\"Les prochains épisodes de {title} sont \"),"
-        "(10,\"Les prochains {title} sont \"),"
+msgstr  "(10, \"Les prochains épisodes de {title} sont \"),"
+        "(10, \"Les prochains {title} sont \"),"
 
 
-
-#------------------------------part of the day
+#-----------------------------------------------------------------------------
+# Part of the day
+#-----------------------------------------------------------------------------
 msgid "morning"
 msgstr  "matin "
 
@@ -148,12 +165,15 @@ msgid "alltheday"
 msgstr  "toute la journée "
 
 msgid "now"
-msgstr  "(10,\"actuellement\"),"
-        "(10,\"en ce moment\"),"
-        "(6,\"maintenant\"),"
-        "(16,\" \"),"
+msgstr  "(10, \"actuellement\"),"
+        "(10, \"en ce moment\"),"
+        "(6,  \"maintenant\"),"
+        "(16, \" \"),"
 
-#---------------------------------date
+
+#-----------------------------------------------------------------------------
+# Date
+#-----------------------------------------------------------------------------
 msgid "today"
 msgstr  "aujourd'hui "
 
@@ -164,57 +184,80 @@ msgid "after tomorrow"
 msgstr  "aprés demain "
 
 
-#---------------------------------time
+#-----------------------------------------------------------------------------
+# Time
+#-----------------------------------------------------------------------------
 msgid "hour"
-msgstr "heure"
+msgstr  "heure"
 
 msgid "minute"
-msgstr "minute"
+msgstr  "minute"
 
 msgid "seconde"
-msgstr "seconde"
+msgstr  "seconde"
 
 
-
-#---------------------------------day
-
+#-----------------------------------------------------------------------------
+# Day
+#-----------------------------------------------------------------------------
 msgid "Mon"
 msgstr "lundi "
+
 msgid "Tue"
 msgstr "mardi "
+
 msgid "Wed"
 msgstr "mercredi "
+
 msgid "Thu"
 msgstr "jeudi "
+
 msgid "Fri"
 msgstr "vendredi "
+
 msgid "Sat"
 msgstr "samedi "
+
 msgid "Sun"
 msgstr "dimanche "
-#---------------------------------month
+
+
+#-----------------------------------------------------------------------------
+# Month
+#-----------------------------------------------------------------------------
 msgid "January"
 msgstr  "janvier "
+
 msgid "February"
 msgstr  "février "
+
 msgid "March"
 msgstr  "Mars "
+
 msgid "April"
 msgstr  "Avril "
+
 msgid "May"
 msgstr  "Mai "
+
 msgid "June"
 msgstr  "Juin "
+
 msgid "July"
 msgstr  "Juillet "
+
 msgid "August"
 msgstr  "Aout "
 msgid "Septembre"
 msgstr  "Septembre "
+
 msgid "October"
 msgstr  "Octobre "
+
 msgid "November"
 msgstr  "Novembre "
+
 msgid "December"
 msgstr  "Décembre "
 
+# --------------------- End of programmetv.po  ---------------------
