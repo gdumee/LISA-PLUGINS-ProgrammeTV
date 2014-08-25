@@ -48,9 +48,6 @@ class ProgrammeTV(IPlugin):
         self.path = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile(inspect.currentframe()))[0],os.path.normpath("../lang/"))))
         self._ = NeoTrans(domain='programmetv',localedir=self.path,fallback=True,languages=[self.configuration_lisa['lang']], test = __name__).Trans
 
-        self.WITDate = NeoConv(self._).WITDate
-        self.time2str = NeoConv(self._).time2str
-
 
     #-----------------------------------------------------------------------------
     #              Publics  Fonctions
@@ -70,7 +67,7 @@ class ProgrammeTV(IPlugin):
 
         #config date
         #dDate = {'end': datetime.time(20,50), 'begin': datetime.time(12,00), 'date': datetime.date(2014, 7, 18), 'part': 'afternoon', 'delta': 1, 'day' : 'Mon', 'Month':'July'}
-        dDate = self.WITDate(jsonInput)
+        dDate = NeoConv.WITDate(jsonInput)
         #exceptions
         if dDate['delta'] > 7 :
             return {"plugin": __name__.split('.')[-1], "method": sys._getframe().f_code.co_name, "body": self._("not yet")}                         #fatal
@@ -177,7 +174,7 @@ class ProgrammeTV(IPlugin):
                 tim=self._('now')
             elif (eval(t[1])-previoustime) > 8 :
                 previoustime = eval(t[1])
-                tim = self._('at') + self.time2str((t[1][:2]+':'+t[1][2:4]),pMinutes=0)
+                tim = self._('at') + NeoConv.time2str((t[1][:2]+':'+t[1][2:4]),pMinutes=0)
             elif (eval(t[1])-previoustime) < 8 :  #delete time if show lasts <8 minutes
                 tim = ''
             #prog
@@ -268,7 +265,7 @@ class ProgrammeTV(IPlugin):
                     message += self._("further day-msg").format(date = d, month='',day=self._(day),part='')
                 previousdelta = delta
 
-            tim = self._('at') + self.time2str((el[8:10]+':'+el[10:12]),pMinutes=0) +', '
+            tim = self._('at') + NeoConv.time2str((el[8:10]+':'+el[10:12]),pMinutes=0) +', '
             message+= tim
 
 
